@@ -1,0 +1,26 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(pnpm add *)",
+      "Bash(cargo check *)",
+      "Bash(rustup show *)",
+      "Bash(where link.exe)",
+      "Read(//c/Program Files/Microsoft Visual Studio/**)",
+      "Read(//c/Program Files \\(x86\\)/Microsoft Visual Studio/**)",
+      "Read(//c/Program Files/Microsoft Visual Studio/2022/**)",
+      "Bash(powershell -Command '& { $vswhere = '\\\\''C:\\\\Program Files \\(x86\\)\\\\Microsoft Visual Studio\\\\Installer\\\\vswhere.exe'\\\\''; if \\(Test-Path $vswhere\\) { & $vswhere -latest -property installationPath } else { '\\\\''vswhere not found'\\\\'' } }')",
+      "Bash(powershell -Command \"Get-ChildItem 'C:\\\\Program Files\\\\Microsoft Visual Studio\\\\2022' -ErrorAction SilentlyContinue; Get-ChildItem 'C:\\\\Program Files \\(x86\\)\\\\Microsoft Visual Studio\\\\2022' -ErrorAction SilentlyContinue\")",
+      "Bash(where.exe link *)",
+      "Bash(where.exe cl *)",
+      "Bash(where.exe lld-link *)",
+      "Bash(where.exe gcc *)",
+      "Bash(where.exe g++)",
+      "Read(//c/tools/msys64/mingw64/bin/**)",
+      "Bash(ls \"C:\\\\tools\\\\msys64\\\\mingw64\\\\bin\\\\\" 2>&1 | head -20 ; ls \"C:\\\\tools\\\\msys64\\\\ucrt64\\\\bin\\\\gcc.exe\" 2>&1)",
+      "Bash(ls /c/tools/msys64/mingw64/bin/gcc.exe 2>&1 ; ls /c/tools/msys64/ucrt64/bin/gcc.exe 2>&1 ; ls /c/tools/msys64/mingw64/bin/ 2>&1 | grep -E \"^gcc|^g\\\\+\\\\+\")",
+      "Bash(rustup toolchain *)",
+      "Bash(rustup override *)",
+      "Bash(PATH=/c/tools/msys64/ucrt64/bin:__TRACKED_VAR__ cargo check --target x86_64-pc-windows-gnu)"
+    ]
+  }
+}

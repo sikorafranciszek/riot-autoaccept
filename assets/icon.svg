@@ -1,0 +1,54 @@
+<svg width="1024" height="1024" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="40%" r="65%">
+      <stop offset="0%" stop-color="#1a1a2e"/>
+      <stop offset="100%" stop-color="#05050a"/>
+    </radialGradient>
+    <linearGradient id="cyan" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#67e8f9"/>
+      <stop offset="100%" stop-color="#0891b2"/>
+    </linearGradient>
+    <filter id="glow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="18"/>
+      <feComposite in="SourceGraphic" operator="over"/>
+    </filter>
+    <filter id="softglow">
+      <feGaussianBlur stdDeviation="40"/>
+    </filter>
+  </defs>
+
+  <!-- background -->
+  <rect width="1024" height="1024" rx="220" ry="220" fill="url(#bg)"/>
+
+  <!-- soft outer glow halo -->
+  <circle cx="512" cy="512" r="280" fill="#22d3ee" opacity="0.18" filter="url(#softglow)"/>
+
+  <!-- crossed swords forming an X -->
+  <g transform="translate(512 512)" stroke="url(#cyan)" stroke-linecap="round" stroke-linejoin="round" filter="url(#glow)">
+    <!-- sword 1: top-left to bottom-right -->
+    <g transform="rotate(45)">
+      <!-- blade -->
+      <rect x="-22" y="-300" width="44" height="500" rx="8" fill="url(#cyan)"/>
+      <!-- guard -->
+      <rect x="-90" y="200" width="180" height="22" rx="6" fill="#0891b2"/>
+      <!-- handle -->
+      <rect x="-14" y="222" width="28" height="80" rx="6" fill="#155e75"/>
+      <!-- pommel -->
+      <circle cx="0" cy="312" r="18" fill="#0891b2"/>
+      <!-- tip highlight -->
+      <polygon points="-22,-300 22,-300 0,-360" fill="#67e8f9"/>
+    </g>
+    <!-- sword 2: top-right to bottom-left -->
+    <g transform="rotate(-45)">
+      <rect x="-22" y="-300" width="44" height="500" rx="8" fill="url(#cyan)"/>
+      <rect x="-90" y="200" width="180" height="22" rx="6" fill="#0891b2"/>
+      <rect x="-14" y="222" width="28" height="80" rx="6" fill="#155e75"/>
+      <circle cx="0" cy="312" r="18" fill="#0891b2"/>
+      <polygon points="-22,-300 22,-300 0,-360" fill="#67e8f9"/>
+    </g>
+  </g>
+
+  <!-- center accent dot -->
+  <circle cx="512" cy="512" r="32" fill="#22d3ee"/>
+  <circle cx="512" cy="512" r="14" fill="#a5f3fc"/>
+</svg>

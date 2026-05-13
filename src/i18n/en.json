@@ -1,0 +1,65 @@
+{
+  "app": {
+    "title": "Riot Accept",
+    "tagline": "Auto-accept for League & TFT"
+  },
+  "status": {
+    "stopped": "Stopped",
+    "searching": "Searching for client",
+    "connecting": "Connecting",
+    "connected": "Connected",
+    "disconnected": "Disconnected",
+    "error": "Error"
+  },
+  "phase": {
+    "idle": "Idle",
+    "in-queue": "In queue",
+    "ready-check": "Match found",
+    "in-champ-select": "Champ select",
+    "in-game": "In game",
+    "end-of-game": "End of game"
+  },
+  "queue": {
+    "league-of-legends": "League",
+    "tft": "TFT",
+    "aram": "ARAM",
+    "unknown": ""
+  },
+  "auto": {
+    "label": "Auto-accept",
+    "on": "ON",
+    "off": "OFF"
+  },
+  "stats": {
+    "accepted": "accepted",
+    "accepted_one": "match accepted",
+    "accepted_other": "matches accepted"
+  },
+  "settings": {
+    "title": "Settings",
+    "autostart": "Start with Windows",
+    "minimizeToTray": "Minimize to tray on close",
+    "notifications": "System notifications",
+    "alwaysOnTop": "Always on top",
+    "language": "Language",
+    "languageAuto": "Auto",
+    "resetStats": "Reset statistics",
+    "version": "Version",
+    "close": "Close",
+    "openLogs": "Open log folder"
+  },
+  "actions": {
+    "settings": "Settings",
+    "notifications": "Notifications",
+    "alwaysOnTop": "Always on top",
+    "language": "Language",
+    "quit": "Quit"
+  },
+  "tray": {
+    "toggleOn": "Auto-accept: ON",
+    "toggleOff": "Auto-accept: OFF",
+    "show": "Show",
+    "hide": "Hide",
+    "quit": "Quit"
+  }
+}

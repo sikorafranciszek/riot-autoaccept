@@ -1,0 +1,43 @@
+# Dependencies
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Build outputs
+dist/
+dist-ssr/
+build/
+release/
+src-tauri/target/
+src-tauri/gen/schemas
+
+# Tauri
+src-tauri/WixTools/
+src-tauri/.cargo/
+
+# Editor / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+
+# Env / secrets
+.env
+.env.local
+.env.*.local
+
+# Legacy Electron code (kept for reference, not shipped)
+legacy/
+
+# Logs
+*.log
+logs/
+
+# Cache
+.eslintcache
+.cache/
+*.tsbuildinfo

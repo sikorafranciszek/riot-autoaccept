@@ -1,0 +1,67 @@
+{
+  "app": {
+    "title": "Riot Accept",
+    "tagline": "Auto-akcept LoL i TFT"
+  },
+  "status": {
+    "stopped": "Zatrzymano",
+    "searching": "Szukam klienta",
+    "connecting": "Łączenie",
+    "connected": "Połączono",
+    "disconnected": "Rozłączono",
+    "error": "Błąd"
+  },
+  "phase": {
+    "idle": "Bezczynny",
+    "in-queue": "W kolejce",
+    "ready-check": "Znaleziono mecz",
+    "in-champ-select": "Wybór bohatera",
+    "in-game": "W grze",
+    "end-of-game": "Koniec gry"
+  },
+  "queue": {
+    "league-of-legends": "League",
+    "tft": "TFT",
+    "aram": "ARAM",
+    "unknown": ""
+  },
+  "auto": {
+    "label": "Auto-akcept",
+    "on": "WŁ",
+    "off": "WYŁ"
+  },
+  "stats": {
+    "accepted": "zaakceptowano",
+    "accepted_one": "zaakceptowany mecz",
+    "accepted_few": "zaakceptowane mecze",
+    "accepted_many": "zaakceptowanych meczów",
+    "accepted_other": "zaakceptowanych meczów"
+  },
+  "settings": {
+    "title": "Ustawienia",
+    "autostart": "Uruchamiaj z Windowsem",
+    "minimizeToTray": "Chowaj do zasobnika przy zamknięciu",
+    "notifications": "Powiadomienia systemowe",
+    "alwaysOnTop": "Zawsze na wierzchu",
+    "language": "Język",
+    "languageAuto": "Auto",
+    "resetStats": "Wyzeruj statystyki",
+    "version": "Wersja",
+    "close": "Zamknij",
+    "openLogs": "Otwórz folder logów"
+  },
+  "actions": {
+    "settings": "Ustawienia",
+    "notifications": "Powiadomienia",
+    "alwaysOnTop": "Zawsze na wierzchu",
+    "language": "Język",
+    "quit": "Zakończ"
+  },
+  "tray": {
+    "toggleOn": "Auto-akcept: WŁ",
+    "toggleOff": "Auto-akcept: WYŁ",
+    "show": "Pokaż",
+    "hide": "Ukryj",
+    "quit": "Zakończ"
+  }
+}

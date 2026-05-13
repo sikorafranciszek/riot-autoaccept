@@ -28,7 +28,7 @@ fn from_process() -> Option<LcuCredentials> {
     );
     sys.refresh_processes(sysinfo::ProcessesToUpdate::All, true);
 
-    for (_pid, process) in sys.processes() {
+    for process in sys.processes().values() {
         let name = process.name().to_string_lossy();
         if !PROCESS_NAMES
             .iter()

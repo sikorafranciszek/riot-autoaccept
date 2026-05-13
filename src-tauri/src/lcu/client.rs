@@ -31,10 +31,6 @@ impl LcuClient {
         })
     }
 
-    pub fn auth_header(&self) -> &str {
-        &self.auth
-    }
-
     async fn request_raw(&self, method: Method, path: &str) -> Result<(StatusCode, String)> {
         let url = format!("{}{}", self.base, path);
         let res = self

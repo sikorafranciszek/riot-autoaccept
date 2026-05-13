@@ -96,6 +96,7 @@ impl AutoAcceptService {
         info!("auto-accept worker started");
     }
 
+    #[allow(dead_code)]
     pub async fn stop(&self) {
         let mut inner = self.inner.lock().await;
         if let Some(handle) = inner.worker.take() {

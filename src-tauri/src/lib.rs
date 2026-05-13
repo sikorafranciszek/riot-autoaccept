@@ -68,9 +68,11 @@ pub fn run() {
             }
 
             // Bootstrap state.
-            let mut initial = AppState::default();
-            initial.auto_accept_enabled = persisted.auto_accept_enabled;
-            initial.accepted_count = persisted.accepted_count;
+            let initial = AppState {
+                auto_accept_enabled: persisted.auto_accept_enabled,
+                accepted_count: persisted.accepted_count,
+                ..Default::default()
+            };
 
             // Build the service and start its background loop.
             let service =

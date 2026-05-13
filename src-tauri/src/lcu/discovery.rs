@@ -24,7 +24,7 @@ pub fn detect_lcu() -> Option<LcuCredentials> {
 
 fn from_process() -> Option<LcuCredentials> {
     let mut sys = System::new_with_specifics(
-        RefreshKind::nothing().with_processes(ProcessRefreshKind::everything()),
+        RefreshKind::new().with_processes(ProcessRefreshKind::everything()),
     );
     sys.refresh_processes(sysinfo::ProcessesToUpdate::All, true);
 

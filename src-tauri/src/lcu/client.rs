@@ -5,10 +5,7 @@ use serde::de::DeserializeOwned;
 use std::time::Duration;
 
 /// Lightweight HTTPS client for the League Client Update API.
-///
-/// The LCU serves a self-signed certificate on localhost, so we explicitly
-/// disable cert verification — there is no risk of MITM since we only ever
-/// talk to `127.0.0.1`.
+/// Cert verification is disabled since the LCU uses a self-signed cert on loopback.
 #[derive(Clone)]
 pub struct LcuClient {
     http: Client,
@@ -20,6 +17,7 @@ impl LcuClient {
     pub fn new(port: u16, token: &str) -> Result<Self> {
         let http = Client::builder()
             .danger_accept_invalid_certs(true)
+            .danger_accept_invalid_hostnames(true)
             .timeout(Duration::from_secs(4))
             .build()
             .context("build reqwest client")?;

@@ -1,7 +1,7 @@
 use anyhow::{Context, Result};
 use base64::{engine::general_purpose::STANDARD as B64, Engine as _};
 use futures_util::{SinkExt, StreamExt};
-use std::sync::Arc;
+use native_tls::TlsConnector;
 use tokio::sync::mpsc;
 use tokio_tungstenite::{
     connect_async_tls_with_config,
@@ -17,70 +17,16 @@ pub enum LcuEvent {
     QueueId(i64),
 }
 
-/// Self-signed cert verifier that accepts any localhost cert. Required for
-/// the League Client websocket which is signed by Riot's internal CA.
-mod no_verifier {
-    use rustls::client::danger::{HandshakeSignatureValid, ServerCertVerified, ServerCertVerifier};
-    use rustls::crypto::ring::default_provider;
-    use rustls::pki_types::{CertificateDer, ServerName, UnixTime};
-    use rustls::{DigitallySignedStruct, Error, SignatureScheme};
-    use std::sync::Arc;
-
-    #[derive(Debug)]
-    pub struct AcceptAny;
-
-    impl ServerCertVerifier for AcceptAny {
-        fn verify_server_cert(
-            &self,
-            _: &CertificateDer<'_>,
-            _: &[CertificateDer<'_>],
-            _: &ServerName<'_>,
-            _: &[u8],
-            _: UnixTime,
-        ) -> Result<ServerCertVerified, Error> {
-            Ok(ServerCertVerified::assertion())
-        }
-
-        fn verify_tls12_signature(
-            &self,
-            _: &[u8],
-            _: &CertificateDer<'_>,
-            _: &DigitallySignedStruct,
-        ) -> Result<HandshakeSignatureValid, Error> {
-            Ok(HandshakeSignatureValid::assertion())
-        }
-
-        fn verify_tls13_signature(
-            &self,
-            _: &[u8],
-            _: &CertificateDer<'_>,
-            _: &DigitallySignedStruct,
-        ) -> Result<HandshakeSignatureValid, Error> {
-            Ok(HandshakeSignatureValid::assertion())
-        }
-
-        fn supported_verify_schemes(&self) -> Vec<SignatureScheme> {
-            default_provider().signature_verification_algorithms.supported_schemes()
-        }
-    }
-}
-
 fn tls_connector() -> Result<Connector> {
-    // Ensure the default crypto provider is installed once. ignore the error if
-    // it's already installed by a previous call.
-    let _ = rustls::crypto::ring::default_provider().install_default();
-
-    let config = rustls::ClientConfig::builder()
-        .dangerous()
-        .with_custom_certificate_verifier(Arc::new(no_verifier::AcceptAny))
-        .with_no_client_auth();
-    Ok(Connector::Rustls(Arc::new(config)))
+    let connector = TlsConnector::builder()
+        .danger_accept_invalid_certs(true)
+        .danger_accept_invalid_hostnames(true)
+        .build()
+        .context("build TlsConnector")?;
+    Ok(Connector::NativeTls(connector))
 }
 
 /// Connect to the LCU websocket and forward decoded events into a channel.
-///
-/// Returns when the underlying connection drops (or the consumer hangs up),
-/// allowing callers to drive reconnect logic externally.
 pub async fn run_stream(port: u16, token: &str, tx: mpsc::Sender<LcuEvent>) -> Result<()> {
     let url = format!("wss://127.0.0.1:{}/", port);
     let mut request = url.into_client_request().context("build ws request")?;
@@ -94,7 +40,6 @@ pub async fn run_stream(port: u16, token: &str, tx: mpsc::Sender<LcuEvent>) -> R
         .await
         .context("ws connect")?;
 
-    // Subscribe to all REST events on the bus.
     ws.send(Message::Text(r#"[5,"OnJsonApiEvent"]"#.to_owned()))
         .await
         .context("subscribe OnJsonApiEvent")?;

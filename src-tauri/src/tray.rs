@@ -57,13 +57,8 @@ pub fn setup<R: Runtime>(app: &AppHandle<R>) -> tauri::Result<()> {
                 } else {
                     "Auto-accept: OFF"
                 };
-                if let Some(item) = tray
-                    .menu()
-                    .and_then(|m| m.get("tray.toggle"))
-                    .and_then(|i| i.as_menuitem().cloned())
-                {
-                    let _ = item.set_text(label);
-                }
+                // Update toggle label via tooltip (menu item update via stored handle)
+                let _ = tray.set_tooltip(Some(&format!("Riot Auto Accept — {}", label)));
             }
         }
     });

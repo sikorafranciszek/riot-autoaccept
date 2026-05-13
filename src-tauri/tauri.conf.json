@@ -57,10 +57,5 @@
     "shortDescription": "Auto-accept for League of Legends and TFT",
     "longDescription": "Automatic ready-check acceptance for League of Legends and Teamfight Tactics matches. Lightweight Tauri-based replacement for clunky Electron auto-accept tools."
   },
-  "plugins": {
-    "store": {},
-    "autostart": {},
-    "notification": {},
-    "os": {}
-  }
+  "plugins": {}
 }

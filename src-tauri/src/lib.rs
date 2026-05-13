@@ -85,7 +85,13 @@ pub fn run() {
 
             // Setup tray icon.
             if let Err(err) = tray::setup(&handle) {
-                tracing::warn!(?err, "tray setup failed");
+                tracing::warn!(?err, "tray setup failed — app will still show window");
+            }
+
+            // Ensure window is visible on startup.
+            if let Some(window) = handle.get_webview_window("main") {
+                let _ = window.show();
+                let _ = window.set_focus();
             }
 
             // Handle "close" → hide-to-tray (when enabled).

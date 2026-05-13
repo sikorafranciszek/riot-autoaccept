@@ -84,7 +84,11 @@ pub async fn run_stream(port: u16, token: &str, tx: mpsc::Sender<LcuEvent>) -> R
                         .and_then(|v| v.as_str())
                         .unwrap_or("");
                     let ready = state == "InProgress" && response == "None";
-                    let _ = tx.send(LcuEvent::ReadyCheck { ready_to_accept: ready }).await;
+                    let _ = tx
+                        .send(LcuEvent::ReadyCheck {
+                            ready_to_accept: ready,
+                        })
+                        .await;
                 }
             }
             "/lol-gameflow/v1/gameflow-phase" => {

@@ -15,7 +15,8 @@ use tracing_subscriber::EnvFilter;
 pub fn run() {
     tracing_subscriber::fmt()
         .with_env_filter(
-            EnvFilter::try_from_default_env().unwrap_or_else(|_| EnvFilter::new("riot_autoaccept_lib=info,warn")),
+            EnvFilter::try_from_default_env()
+                .unwrap_or_else(|_| EnvFilter::new("riot_autoaccept_lib=info,warn")),
         )
         .with_target(false)
         .compact()
@@ -72,11 +73,8 @@ pub fn run() {
             initial.accepted_count = persisted.accepted_count;
 
             // Build the service and start its background loop.
-            let service = AutoAcceptService::new(
-                handle.clone(),
-                initial,
-                persisted.show_notifications,
-            );
+            let service =
+                AutoAcceptService::new(handle.clone(), initial, persisted.show_notifications);
             app.manage(service.clone());
 
             tauri::async_runtime::spawn(async move {

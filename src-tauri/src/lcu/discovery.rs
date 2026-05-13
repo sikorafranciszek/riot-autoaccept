@@ -30,7 +30,10 @@ fn from_process() -> Option<LcuCredentials> {
 
     for (_pid, process) in sys.processes() {
         let name = process.name().to_string_lossy();
-        if !PROCESS_NAMES.iter().any(|target| name.eq_ignore_ascii_case(target)) {
+        if !PROCESS_NAMES
+            .iter()
+            .any(|target| name.eq_ignore_ascii_case(target))
+        {
             continue;
         }
 
@@ -70,7 +73,11 @@ fn lockfile_paths() -> Vec<PathBuf> {
     ];
 
     if let Some(home) = dirs::home_dir() {
-        paths.push(home.join("Riot Games").join("League of Legends").join("lockfile"));
+        paths.push(
+            home.join("Riot Games")
+                .join("League of Legends")
+                .join("lockfile"),
+        );
     }
 
     paths

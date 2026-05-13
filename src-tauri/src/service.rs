@@ -1,5 +1,5 @@
-use crate::lcu::{self, GameflowPhase, LcuClient, LcuCredentials, QueueType};
 use crate::lcu::websocket::LcuEvent;
+use crate::lcu::{self, GameflowPhase, LcuClient, LcuCredentials, QueueType};
 use crate::state::{AppState, ConnectionStatus, MatchPhase};
 use std::sync::Arc;
 use std::time::{Duration, Instant};

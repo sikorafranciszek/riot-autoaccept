@@ -29,6 +29,9 @@ jobs:
       - uses: Swatinem/rust-cache@v2
         with:
           workspaces: "./src-tauri -> target"
+      - name: Create dist placeholder
+        run: New-Item -ItemType Directory -Force dist; New-Item -ItemType File -Force dist/index.html
+        shell: pwsh
       - name: Cargo fmt
         working-directory: src-tauri
         run: cargo fmt --check
